@@ -1,0 +1,15 @@
+target/* /target/ .metadata tar.gz .classpath .project */.settings/
+/target/
+.settings
+.classpath
+.project
+.gradle/
+out/
+build/
+.idea
+*.iml
+bin
+*.ipr
+*.iml
+*.iws
+/logs/

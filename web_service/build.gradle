@@ -1,0 +1,55 @@
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'maven'
+apply plugin: 'eclipse'
+apply plugin: 'application'
+
+repositories {
+    mavenCentral()
+}
+
+String dropwizardVersion='0.8.0-rc1'
+dependencies {
+    compile group: 'commons-collections', name: 'commons-collections', version: '3.2'
+
+    compile 'commons-lang:commons-lang:2.6'
+    compile 'io.dropwizard:dropwizard-core:'+dropwizardVersion
+    compile 'io.dropwizard:dropwizard-spdy:'+dropwizardVersion
+    compile 'io.dropwizard:dropwizard-client:'+dropwizardVersion
+    compile 'com.google.inject:guice:4.0-beta5'
+
+    testCompile 'io.dropwizard:dropwizard-testing:'+dropwizardVersion
+    testCompile 'junit:junit:4.+'
+    testCompile 'org.easytesting:fest-assert-core:2.0M10'
+    testCompile 'org.mockito:mockito-core:1.+'
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+mainClassName = 'com.payit.ApplicationMain'
+
+run {
+    args = ['server', './app.yml']
+}
+
+jar {
+    manifest {
+        attributes "Main-Class" : mainClassName
+        attributes 'Built-Date': new Date() //now
+        attributes 'Built-By': System.getProperty('user.name')
+        attributes 'Build-Jdk': System.getProperty('java.version')
+
+    }
+
+    doFirst {
+        from (configurations.runtime.resolve().collect { it.isDirectory() ? it : zipTree(it) }) {
+            exclude 'META-INF/MANIFEST.MF'
+            exclude 'META-INF/*.SF'
+            exclude 'META-INF/*.DSA'
+            exclude 'META-INF/*.RSA'
+        }
+    }
+}
+
+
