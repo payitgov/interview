@@ -36,7 +36,7 @@ import java.nio.file.Path;
 public class Problem3 {
 
     public Duplicates findDuplicates() {
-        
+        return null;
     }
 
 }
