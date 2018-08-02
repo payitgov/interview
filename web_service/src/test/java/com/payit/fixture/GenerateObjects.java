@@ -1,17 +1,17 @@
 package com.payit.fixture;
 
 import com.payit.api.BlogPost;
-import com.payit.jdbi.BlogStore;
+
 import org.apache.commons.lang.RandomStringUtils;
 
-import java.util.*;
+import java.util.Date;
+import java.util.UUID;
 
 /**
  * Created by Richard on 12/12/14.
  */
 public class GenerateObjects {
-
-    public static BlogPost generateBlogPost(){
+    public static BlogPost generateBlogPost() {
         BlogPost blogPost = new BlogPost();
         blogPost.setAuthor(UUID.randomUUID().toString());
         blogPost.setPostDate(new Date());
@@ -20,9 +20,7 @@ public class GenerateObjects {
         return blogPost;
     }
 
-    protected static String generateLongString(int size){
+    protected static String generateLongString(int size) {
         return RandomStringUtils.random(size);
     }
-
-
 }

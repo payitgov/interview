@@ -8,10 +8,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-/**
- * Created by Richard on 8/5/15.
- */
-public class BlogStoreImpl implements BlogStore{
+public class BlogStoreImpl implements BlogStore {
     private static final Map<String, BlogPost> inMemoryStore = new HashMap<>();
 
     @Override

@@ -1,19 +1,19 @@
 package com.payit.integration;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
+import static io.dropwizard.testing.ResourceHelpers.resourceFilePath;
+
 import com.payit.ApplicationMain;
 import com.payit.api.BlogPost;
 import com.payit.fixture.GenerateObjects;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
 import io.dropwizard.Configuration;
 import io.dropwizard.testing.junit.DropwizardAppRule;
-import org.junit.*;
-
-import javax.ws.rs.client.Client;
-import javax.ws.rs.client.ClientBuilder;
-import javax.ws.rs.client.Entity;
-import javax.ws.rs.client.WebTarget;
-import javax.ws.rs.core.GenericType;
-import javax.ws.rs.core.MediaType;
+import org.junit.After;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.ClassRule;
+import org.junit.Test;
 
 import java.io.IOException;
 import java.security.KeyStoreException;
@@ -22,14 +22,17 @@ import java.security.cert.CertificateException;
 import java.util.List;
 import java.util.stream.IntStream;
 
-import static io.dropwizard.testing.ResourceHelpers.resourceFilePath;
+import javax.ws.rs.client.Client;
+import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.client.Entity;
+import javax.ws.rs.client.WebTarget;
+import javax.ws.rs.core.GenericType;
+import javax.ws.rs.core.MediaType;
 
 public class BlogPostEndpointTest {
-    protected static final String BASE_URL = "/posts";
-
     @ClassRule
     public static final DropwizardAppRule<Configuration> RULE = new DropwizardAppRule<>(ApplicationMain.class, resourceFilePath("app.yml"));
-
+    protected static final String BASE_URL = "/posts";
     protected Client client;
     protected String serverAddress;
 
@@ -55,7 +58,7 @@ public class BlogPostEndpointTest {
     }
 
     @Test
-    public void getABlogPost(){
+    public void getABlogPost() {
         BlogPost post = storeABlogPost();
         WebTarget target = client.target(serverAddress).path(BASE_URL + "/" + post.getId());
 
@@ -73,12 +76,12 @@ public class BlogPostEndpointTest {
         Assert.assertEquals(expected, getAll().size());
     }
 
-    public void deleteABlogPost(String id){
+    public void deleteABlogPost(String id) {
         WebTarget target = client.target(serverAddress).path(BASE_URL + "/" + id);
         target.request(MediaType.APPLICATION_JSON_TYPE).delete();
     }
 
-    public BlogPost storeABlogPost(){
+    public BlogPost storeABlogPost() {
         WebTarget target = client.target(serverAddress).path(BASE_URL);
 
         return target.request(MediaType.APPLICATION_JSON_TYPE)
@@ -87,11 +90,8 @@ public class BlogPostEndpointTest {
 
     public List<BlogPost> getAll() throws JsonProcessingException {
         WebTarget target = client.target(serverAddress).path(BASE_URL);
-        List<BlogPost> allPosts = target.request(MediaType.APPLICATION_JSON_TYPE)
-                .get(new GenericType<List<BlogPost>>() {
-                });
+        List<BlogPost> allPosts = target.request(MediaType.APPLICATION_JSON_TYPE).get(new GenericType<List<BlogPost>>() {});
 
         return allPosts;
     }
-
 }

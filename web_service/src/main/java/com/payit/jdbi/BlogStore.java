@@ -5,10 +5,13 @@ import com.payit.api.BlogPost;
 import java.util.List;
 
 public interface BlogStore {
+    List<BlogPost> getAllPosts();
 
-    public List<BlogPost> getAllPosts();
-    public BlogPost storeBlogPost(BlogPost blogpost);
-    public BlogPost getBlogPostById(String id);
-    public void updateBlogPost(String id, BlogPost blogPost);
-    public void deleteBlogPost(String id);
+    BlogPost storeBlogPost(BlogPost blogpost);
+
+    BlogPost getBlogPostById(String id);
+
+    void updateBlogPost(String id, BlogPost blogPost);
+
+    void deleteBlogPost(String id);
 }
