@@ -4,18 +4,17 @@ import com.payit.api.BlogPost;
 import com.payit.jdbi.BlogStore;
 import com.payit.service.BlogPostService;
 
-import javax.inject.Inject;
 import java.util.List;
 
-public class BlogPostServiceImpl implements BlogPostService {
+import javax.inject.Inject;
 
+public class BlogPostServiceImpl implements BlogPostService {
     private final BlogStore blogStore;
 
     @Inject
-    public BlogPostServiceImpl(BlogStore blogStore){
+    public BlogPostServiceImpl(BlogStore blogStore) {
         this.blogStore = blogStore;
     }
-
 
     @Override
     public List<BlogPost> getAllPosts() {

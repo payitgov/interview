@@ -4,7 +4,6 @@ import java.util.Date;
 import java.util.UUID;
 
 public class BlogPost {
-
     private String id = UUID.randomUUID().toString();
     private String author;
     private String title;

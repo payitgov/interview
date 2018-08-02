@@ -3,9 +3,6 @@ package com.payit.problems;
 import org.junit.Assert;
 import org.junit.Test;
 
-/**
- * Created by Richard on 8/6/15.
- */
 public class Problem2Test {
     @Test
     public void palindromeTest() {

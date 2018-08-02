@@ -1,10 +1,6 @@
 package com.payit.problems.models;
 
-/**
- * Created by richard on 3/3/16.
- */
 public class Duplicates {
-
     private int possibleDuplicates;
     private int fullDuplicates;
 
