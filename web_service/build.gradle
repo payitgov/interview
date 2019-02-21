@@ -7,14 +7,14 @@ apply plugin: 'application'
 repositories {
     mavenCentral()
 }
+String dropwizardVersion='1.3.8'
 
-String dropwizardVersion='0.8.0-rc1'
+
 dependencies {
     compile group: 'commons-collections', name: 'commons-collections', version: '3.2'
 
     compile 'commons-lang:commons-lang:2.6'
     compile 'io.dropwizard:dropwizard-core:'+dropwizardVersion
-    compile 'io.dropwizard:dropwizard-spdy:'+dropwizardVersion
     compile 'io.dropwizard:dropwizard-client:'+dropwizardVersion
     compile 'com.google.inject:guice:4.0-beta5'
 
@@ -34,21 +34,19 @@ run {
 }
 
 jar {
+    from (configurations.runtime.resolve().collect { it.isDirectory() ? it : zipTree(it) }) {
+        exclude 'META-INF/MANIFEST.MF'
+        exclude 'META-INF/*.SF'
+        exclude 'META-INF/*.DSA'
+        exclude 'META-INF/*.RSA'
+    }
+
     manifest {
         attributes "Main-Class" : mainClassName
         attributes 'Built-Date': new Date() //now
         attributes 'Built-By': System.getProperty('user.name')
         attributes 'Build-Jdk': System.getProperty('java.version')
 
-    }
-
-    doFirst {
-        from (configurations.runtime.resolve().collect { it.isDirectory() ? it : zipTree(it) }) {
-            exclude 'META-INF/MANIFEST.MF'
-            exclude 'META-INF/*.SF'
-            exclude 'META-INF/*.DSA'
-            exclude 'META-INF/*.RSA'
-        }
     }
 }
 

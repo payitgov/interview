@@ -7,9 +7,6 @@ import org.apache.commons.lang.RandomStringUtils;
 import java.util.Date;
 import java.util.UUID;
 
-/**
- * Created by Richard on 12/12/14.
- */
 public class GenerateObjects {
     public static BlogPost generateBlogPost() {
         BlogPost blogPost = new BlogPost();

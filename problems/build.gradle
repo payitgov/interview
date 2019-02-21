@@ -6,7 +6,6 @@ apply plugin: 'eclipse'
 repositories {
     mavenCentral()
     jcenter()
-
 }
 
 version = '0.1.0'
