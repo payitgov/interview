@@ -7,7 +7,7 @@ import com.payit.service.impl.BlogPostServiceImpl;
 
 import com.google.inject.AbstractModule;
 
-public class ServiceInjector extends AbstractModule {
+public class ServiceModule extends AbstractModule {
     @Override
     protected void configure() {
         bind(BlogPostService.class).to(BlogPostServiceImpl.class);

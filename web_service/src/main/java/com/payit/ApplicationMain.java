@@ -23,7 +23,7 @@ public class ApplicationMain extends Application<Configuration> {
 
     @Override
     public void run(Configuration configuration, Environment environment) throws Exception {
-        Injector injector = Guice.createInjector(new ServiceInjector());
+        Injector injector = Guice.createInjector(new ServiceModule());
 
         BlogPostResource blogPostResource = injector.getInstance(BlogPostResource.class);
 
