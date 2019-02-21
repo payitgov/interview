@@ -1,6 +1,5 @@
 server:
   requestLog:
-      timeZone: UTC
       appenders:
         - type: console
   applicationConnectors:
