@@ -17,6 +17,9 @@ dependencies {
     compile 'io.dropwizard:dropwizard-core:'+dropwizardVersion
     compile 'io.dropwizard:dropwizard-client:'+dropwizardVersion
     compile 'com.google.inject:guice:4.0-beta5'
+    compile 'javax.activation:activation:1.1.1'
+    compile 'jakarta.xml.bind:jakarta.xml.bind-api:2.3.2'
+    compile 'org.glassfish.jaxb:jaxb-runtime:2.3.2'
 
     testCompile 'io.dropwizard:dropwizard-testing:'+dropwizardVersion
     testCompile 'junit:junit:4.+'
